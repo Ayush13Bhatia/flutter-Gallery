@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'dart:async';
+import 'package:vector_math/vector_math_64.dart' show Vector3;
+import 'package:get/get.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -12,7 +14,10 @@ class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   File _image;
   final picker = ImagePicker();
-  
+  ThemeData currTheme = ThemeData.light();
+  bool isbool;
+  double _scale = 1.0;
+  double _previousScale = 1.0;
 
   AnimationController animationController;
   Animation degOneTranslationAnimation,
@@ -71,8 +76,30 @@ class _MyHomePageState extends State<MyHomePage>
       height: size.height,
       child: Stack(
         children: <Widget>[
-          Center(
-            child: _image == null ? Text('No Image') : Image.file(_image),
+          GestureDetector(
+            onScaleStart: (ScaleStartDetails details) {
+              print(details);
+              _previousScale = _scale;
+              setState(() {});
+            },
+            onScaleUpdate: (ScaleUpdateDetails details) {
+              print(details);
+              _scale = _previousScale * details.scale;
+              setState(() {});
+            },
+            onScaleEnd: (ScaleEndDetails details) {
+              print(details);
+              _previousScale = 1.0;
+              setState(() {});
+            },
+            child: Center(
+                child: Transform(
+                    alignment: FractionalOffset.center,
+                    transform:
+                        Matrix4.diagonal3(Vector3(_scale, _scale, _scale)),
+                    child: _image == null
+                        ? Text('No Image')
+                        : Image.file(_image))),
           ),
           Positioned(
               right: 30,
@@ -100,11 +127,13 @@ class _MyHomePageState extends State<MyHomePage>
                         width: 50,
                         height: 50,
                         icon: Icon(
-                          Icons.add,
+                          Icons.wb_sunny_rounded,
                           color: Colors.white,
                         ),
                         onClick: () {
-                          _optionsDialogBox();
+                          Get.isDarkMode
+                              ? Get.changeTheme(ThemeData.light())
+                              : Get.changeTheme(ThemeData.dark());
                         },
                       ),
                     ),
@@ -144,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage>
                         width: 50,
                         height: 50,
                         icon: Icon(
-                          Icons.person,
+                          Icons.collections,
                           color: Colors.white,
                         ),
                         onClick: () {
