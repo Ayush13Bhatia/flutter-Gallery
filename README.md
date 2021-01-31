@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-Live Demo:- ImagePicker
+Live Demo:- Image Picker
 
 ## Getting Started
 
