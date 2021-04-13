@@ -16,3 +16,12 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+Images of Image_Picker:-
+![](flutter_01.png)
+![](flutter_02.png)
+![](flutter_03.png)
+
+GIF of Image_picker:-
+![](VID-20210130-WA0006.mp4)
+![](VID-20210130-WA0007.mp4)
