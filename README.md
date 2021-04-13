@@ -18,10 +18,10 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 Images of Image_Picker:-
-![](%40flutter_01.png)
-![](%40flutter_02.png)
-![](%40flutter_03.png)
 
-GIF of Image_picker:-
-[](VID-20210130-WA0006.mp4)
-[](VID-20210130-WA0007.mp4)
+
+<img src="flutter_01.png" width="200" height="400"/> <img src="flutter_02.png" width="200" height="400"/> <img src="flutter_03.png" width="200" height="400"/>
+
+
+
+
